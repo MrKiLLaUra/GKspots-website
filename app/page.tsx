@@ -36,7 +36,7 @@ export default function Home() {
 
     supabase
       .from('reviews')
-      .select('id, name, role, quote, rating')
+      .select('id, name, quote, rating')
       .eq('approved', true)
       .order('created_at', { ascending: true })
       .then(({ data, error }) => {

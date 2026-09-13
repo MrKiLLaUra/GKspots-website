@@ -10,8 +10,7 @@ export const supabase: SupabaseClient | null =
 
 export interface DbReview {
   id: string
-  name: string
-  role: string
+  name: string | null
   quote: string
   rating: number
   approved: boolean
