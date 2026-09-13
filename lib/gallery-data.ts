@@ -40,3 +40,10 @@ export const galleryPhotos: GalleryPhoto[] = [
 ]
 
 export const featuredPhotos = galleryPhotos.slice(0, 6)
+
+export const heroPhoto: GalleryPhoto = {
+  id: 'hero-automotive',
+  category: 'automotive',
+  alt: 'Featured automotive shoot',
+  src: null,
+}

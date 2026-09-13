@@ -16,7 +16,7 @@ export default function GalleryPage() {
       <div className="container">
         <motion.div {...reveal()} style={{ textAlign: 'center', marginBottom: '32px' }}>
           <div className="eyebrow">Gallery</div>
-          <h1 style={{ fontSize: 'clamp(2rem, 4vw, 2.8rem)', marginBottom: '12px' }}>The work.</h1>
+          <h1 className="display-2" style={{ marginBottom: '12px' }}>The work.</h1>
           <p style={{ color: 'var(--text-muted)' }}>Automotive, brand, lifestyle, and custom shoots from across Cyprus.</p>
         </motion.div>
 
@@ -33,7 +33,7 @@ export default function GalleryPage() {
           ))}
         </motion.div>
 
-        <div className="gallery-grid">
+        <div className="editorial-gallery-grid">
           {photos.map((photo, i) => (
             <motion.div key={photo.id} {...reveal(Math.min(i * 0.04, 0.3))}>
               <GalleryTile photo={photo} />

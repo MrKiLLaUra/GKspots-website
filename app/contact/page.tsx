@@ -10,7 +10,7 @@ export default function ContactPage() {
       <div className="container" style={{ maxWidth: '560px' }}>
         <motion.div {...reveal()}>
           <div className="eyebrow">Contact</div>
-          <h1 style={{ fontSize: 'clamp(2rem, 4vw, 2.8rem)', marginBottom: '12px' }}>Get in Touch</h1>
+          <h1 className="display-2" style={{ marginBottom: '12px' }}>Get in Touch</h1>
           <p style={{ color: 'var(--text-muted)', marginBottom: '36px' }}>DM me on Instagram or send me an email</p>
         </motion.div>
 
