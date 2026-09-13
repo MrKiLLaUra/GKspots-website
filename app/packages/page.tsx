@@ -38,13 +38,14 @@ export default function PackagesPage() {
       <div className="container">
         <motion.div {...reveal()} style={{ textAlign: 'center', marginBottom: '48px' }}>
           <div className="eyebrow">Packages</div>
-          <h1 style={{ fontSize: 'clamp(2rem, 4vw, 2.8rem)', marginBottom: '12px' }}>Choose the package<br />that fits your needs.</h1>
+          <h1 className="display-2" style={{ marginBottom: '12px' }}>Choose the package<br />that fits your needs.</h1>
         </motion.div>
 
         <div className="pricing-grid">
           {packages.map((p, i) => (
             <motion.div key={p.name} className="price-card" data-popular={p.popular} {...reveal(i * 0.08)}>
               {p.popular && <span className="popular-badge">Most Popular</span>}
+              <div className="price-index">{String(i + 1).padStart(2, '0')} / 03</div>
               <h3 style={{ fontSize: '1.4rem', marginBottom: '4px' }}>{p.name}</h3>
               <p style={{ color: 'var(--text-dim)', fontSize: '0.85rem', marginBottom: '24px' }}>{p.photos}</p>
               {p.lines.map((line) => (
@@ -60,11 +61,7 @@ export default function PackagesPage() {
           ))}
         </div>
 
-        <motion.div
-          {...reveal(0.2)}
-          className="card"
-          style={{ marginTop: '24px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '20px' }}
-        >
+        <motion.div {...reveal(0.2)} className="card cta-band" style={{ marginTop: '24px' }}>
           <div>
             <h4 style={{ fontSize: '1.1rem', marginBottom: '6px' }}>Custom Package</h4>
             <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem' }}>Need something different? Email me your idea and we&apos;ll build a package around it.</p>

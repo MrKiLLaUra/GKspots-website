@@ -39,13 +39,14 @@ export default function FaqPage() {
       <div className="container" style={{ maxWidth: '760px' }}>
         <motion.div {...reveal()} style={{ textAlign: 'center', marginBottom: '40px' }}>
           <div className="eyebrow">FAQ</div>
-          <h1 style={{ fontSize: 'clamp(2rem, 4vw, 2.8rem)' }}>Frequently Asked Questions</h1>
+          <h1 className="display-2">Frequently Asked Questions</h1>
         </motion.div>
 
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
+        <div>
           {faqs.map((f, i) => (
-            <motion.div key={f.q} className="card" {...reveal(Math.min(i * 0.05, 0.25))}>
-              <h3 style={{ fontSize: '1rem', marginBottom: '8px' }}>{f.q}</h3>
+            <motion.div key={f.q} className="faq-row" {...reveal(Math.min(i * 0.05, 0.25))}>
+              <div className="faq-index">{String(i + 1).padStart(2, '0')}</div>
+              <h3 style={{ fontSize: '1.1rem', marginBottom: '8px' }}>{f.q}</h3>
               <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem', lineHeight: 1.6 }}>{f.a}</p>
             </motion.div>
           ))}

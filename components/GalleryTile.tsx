@@ -1,8 +1,10 @@
 import { categoryLabels, type GalleryPhoto } from '@/lib/gallery-data'
 
-export default function GalleryTile({ photo }: { photo: GalleryPhoto }) {
+type TileSize = 'default' | 'hero' | 'wide' | 'square'
+
+export default function GalleryTile({ photo, size = 'default' }: { photo: GalleryPhoto; size?: TileSize }) {
   return (
-    <div className="gallery-tile">
+    <div className="gallery-tile" data-size={size}>
       {photo.src ? (
         // eslint-disable-next-line @next/next/no-img-element
         <img src={photo.src} alt={photo.alt} />
@@ -13,6 +15,10 @@ export default function GalleryTile({ photo }: { photo: GalleryPhoto }) {
         </svg>
       )}
       <span className="gallery-tile-label">{categoryLabels[photo.category]}</span>
+      <span className="corner-mark tl" aria-hidden="true" />
+      <span className="corner-mark tr" aria-hidden="true" />
+      <span className="corner-mark bl" aria-hidden="true" />
+      <span className="corner-mark br" aria-hidden="true" />
     </div>
   )
 }
