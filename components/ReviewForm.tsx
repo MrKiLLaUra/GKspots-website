@@ -48,6 +48,12 @@ export default function ReviewForm() {
       return
     }
 
+    if (!supabase) {
+      setStatus('error')
+      setError('Reviews are temporarily unavailable — please try again later.')
+      return
+    }
+
     setStatus('submitting')
     setError('')
 

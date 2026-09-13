@@ -32,6 +32,8 @@ export default function Home() {
   const [reviews, setReviews] = useState<Review[]>(demoReviews)
 
   useEffect(() => {
+    if (!supabase) return
+
     supabase
       .from('reviews')
       .select('id, name, role, quote, rating')
