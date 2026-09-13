@@ -12,17 +12,16 @@ function initials(name: string) {
 }
 
 export default function ReviewCard({ review }: { review: Review }) {
+  const name = review.name?.trim() || 'Anonymous'
+
   return (
     <div className="review-card">
       <span className="review-quote-mark" aria-hidden="true">&ldquo;</span>
       <StarRating rating={review.rating} />
       <p className="review-quote">&ldquo;{review.quote}&rdquo;</p>
       <div className="review-footer">
-        <span className="avatar-initials" aria-hidden="true">{initials(review.name)}</span>
-        <div>
-          <div className="review-name">{review.name}</div>
-          <div className="review-role">{review.role}</div>
-        </div>
+        <span className="avatar-initials" aria-hidden="true">{initials(name)}</span>
+        <div className="review-name">{name}</div>
       </div>
     </div>
   )

@@ -34,7 +34,6 @@ function StarPicker({ value, onChange }: { value: number; onChange: (n: number) 
 
 export default function ReviewForm() {
   const [name, setName] = useState('')
-  const [role, setRole] = useState('')
   const [quote, setQuote] = useState('')
   const [rating, setRating] = useState(0)
   const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle')
@@ -43,8 +42,8 @@ export default function ReviewForm() {
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
 
-    if (!name.trim() || !role.trim() || !quote.trim() || rating === 0) {
-      setError('Please fill in every field and pick a rating.')
+    if (!quote.trim() || rating === 0) {
+      setError('Please write a review and pick a rating.')
       return
     }
 
@@ -58,8 +57,7 @@ export default function ReviewForm() {
     setError('')
 
     const { error: submitError } = await supabase.from('reviews').insert({
-      name: name.trim(),
-      role: role.trim(),
+      name: name.trim() || null,
       quote: quote.trim(),
       rating,
       approved: false,
@@ -73,7 +71,6 @@ export default function ReviewForm() {
 
     setStatus('success')
     setName('')
-    setRole('')
     setQuote('')
     setRating(0)
   }
@@ -91,29 +88,16 @@ export default function ReviewForm() {
 
   return (
     <form className="review-form" onSubmit={handleSubmit}>
-      <div className="form-row">
-        <div className="form-field">
-          <label htmlFor="review-name">Name</label>
-          <input
-            id="review-name"
-            className="form-input"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            maxLength={80}
-            placeholder="Andreas K."
-          />
-        </div>
-        <div className="form-field">
-          <label htmlFor="review-role">Car / Context</label>
-          <input
-            id="review-role"
-            className="form-input"
-            value={role}
-            onChange={(e) => setRole(e.target.value)}
-            maxLength={120}
-            placeholder="Porsche 911 · Limassol"
-          />
-        </div>
+      <div className="form-field">
+        <label htmlFor="review-name">Name (optional — leave blank to post anonymously)</label>
+        <input
+          id="review-name"
+          className="form-input"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          maxLength={80}
+          placeholder="Andreas K."
+        />
       </div>
 
       <div className="form-field">
